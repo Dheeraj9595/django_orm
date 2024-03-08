@@ -16,6 +16,7 @@ class Command(BaseCommand):
             Employee.objects.create(
                 name=fake.name(),
                 age=fake.random_int(min=18, max=60),
+                state=fake.state(),
                 experience_in_years=fake.random_int(min=1, max=10)
             )
 

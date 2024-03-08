@@ -3,3 +3,4 @@ model.objects.filter(key=value) - to get specific data from model table
 model.objects.filter(field__gt = 20) - to get field specific greater than
 model.objects.filter(field__lt = 20) - to get field specific  less than
 model.objects.get(field=value) - to get specific object with specific perameter
+model.objects.values('age').annotate(age_count=Count('id')) - to get employee with same age count

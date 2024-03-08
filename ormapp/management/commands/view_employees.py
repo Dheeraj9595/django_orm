@@ -2,6 +2,7 @@
 from django.core.management.base import BaseCommand
 from ormapp.models import Employee
 
+
 class Command(BaseCommand):
     help = 'View all employee records.'
 
@@ -11,7 +12,7 @@ class Command(BaseCommand):
         if employees:
             self.stdout.write("Employee records:")
             for employee in employees:
-                self.stdout.write(f"ID: {employee.id}, Name: {employee.name}, Age: {employee.age}, Experience: {employee.experience_in_years}")
+                self.stdout.write(
+                    f"ID: {employee.id}, Name: {employee.name}, Age: {employee.age}, Experience: {employee.experience_in_years}")
         else:
             self.stdout.write("No employee records found.")
-
