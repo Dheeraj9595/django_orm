@@ -23,5 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('employees/', get_all_employees, name='employee_list'),
     path('employees-state/', get_employee_with_state, name='employee_with_state'),
-
 ]

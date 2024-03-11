@@ -1,34 +1,58 @@
 <!-- employee_list.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee List</title>
+    <!-- Add any other necessary meta tags, stylesheets, or scripts here -->
 </head>
 <body>
-    <h1>Employee List</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Experience in Years</th>
-                <th>Pub Date</th>
-                <th>Created By</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for employee in employees %}
-                <tr>
-                    <td>{{ employee.id }}</td>
-                    <td>{{ employee.name }}</td>
-                    <td>{{ employee.age }}</td>
-                    <td>{{ employee.experience_in_years }}</td>
-                    <td>{{ employee.pub_date }}</td>
-                    <td>{{ employee.created_by.username }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+
+<h2>Employee List</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Experience</th>
+        <th>Address</th>
+        <!-- Add more table headers as needed -->
+    </tr>
+    </thead>
+    <tbody>
+    {% for employee in employees_page %}
+    <tr>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.age }}</td>
+        <td>{{ employee.experience_in_years}}</td>
+        <td>{{ employee.state}}</td>
+        <!-- Add more table cells as needed -->
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if employees_page.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ employees_page.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ employees_page.number }} of {{ employees_page.paginator.num_pages }}.
+        </span>
+
+        {% if employees_page.has_next %}
+            <a href="?page={{ employees_page.next_page_number }}">next</a>
+            <a href="?page={{ employees_page.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+<!-- Add any other content, scripts, or closing tags as needed -->
 </body>
 </html>
