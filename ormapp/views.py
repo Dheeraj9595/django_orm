@@ -3,6 +3,9 @@ from ormapp.models import Employee
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from ormapp.serializers import EmployeeSerializer, CustomPageNumberPagination
+from rest_framework import generics
+from rest_framework.generics import ListAPIView
 
 
 def get_all_employees(request=None):
@@ -43,3 +46,21 @@ def get_employee_with_state(request):
         return render(request, 'no_results.html', {'state_param': state_param})
 
     return render(request, 'emp.html', {'employees': employees, 'state_param': state_param})
+
+
+# ----------------REST FRAMEWORK STARTS-----------------------------------------------------------------------
+
+
+# class EmployeeListCreateView(generics.ListCreateAPIView):
+#     queryset = Employee.objects.all()
+#     serializer_class = EmployeeSerializer
+
+class EmployeeListCreateView(ListAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+    pagination_class = CustomPageNumberPagination
+
+
+class EmployeeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer

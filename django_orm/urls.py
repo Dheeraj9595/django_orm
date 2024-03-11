@@ -15,12 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from ormapp.models import Employee
-from ormapp.views import get_all_employees, get_employee_with_state
+from ormapp.views import get_all_employees, get_employee_with_state, EmployeeListCreateView, EmployeeRetrieveUpdateDestroyView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('employees/', get_all_employees, name='employee_list'),
     path('employees-state/', get_employee_with_state, name='employee_with_state'),
+    path('api/', include('ormapp.urls')),
 ]
