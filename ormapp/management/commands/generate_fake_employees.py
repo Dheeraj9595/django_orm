@@ -12,7 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         request = HttpRequest()
 
-        for _ in range(1000):
+        for _ in range(1):
             Employee.objects.create(
                 name=fake.name(),
                 age=fake.random_int(min=18, max=60),
